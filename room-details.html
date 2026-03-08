@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Gallery - New Malook Hotel</title>
+    <style>
+        body { 
+            margin: 0; padding: 0; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: #121212; color: white; text-align: center; 
+        }
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+        
+        /* SCROLLING GALLERY STYLE */
+        .image-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #ff7f50 #333;
+            scroll-snap-type: x mandatory;
+        }
+        .image-slider::-webkit-scrollbar { height: 8px; }
+        .image-slider::-webkit-scrollbar-thumb { background: #ff7f50; border-radius: 10px; }
+
+        .image-slider img {
+            width: 80%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        h1 { color: #ff7f50; font-size: 45px; margin: 10px 0; }
+        .room-meta { font-size: 18px; color: #bbb; margin-bottom: 30px; }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            text-align: left;
+            gap: 30px;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .amenities { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .amenities li::before { content: "✔ "; color: #ff7f50; }
+
+        .footer-btns {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn { text-decoration: none; padding: 15px 40px; border-radius: 30px; font-weight: bold; transition: 0.3s; }
+        .back { border: 2px solid white; color: white; }
+        .book { background: #ff7f50; color: white; border: 2px solid #ff7f50; }
+        .btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="room-title">Room Details</h1>
+        <p class="room-meta">Scroll right to see all photos →</p>
+
+        <div class="image-slider" id="gallery">
+            </div>
+
+        <div class="details-grid">
+            <div>
+                <h3>Description</h3>
+                <p id="room-desc">Loading description...</p>
+            </div>
+            <div>
+                <h3>Amenities</h3>
+                <ul class="amenities">
+                    <li>Free High-Speed Wi-Fi</li>
+                    <li>24/7 Room Service</li>
+                    <li>Mountain View Balcony</li>
+                    <li>Smart LED TV</li>
+                    <li>Electric Kettle & Tea</li>
+                    <li>Attached Modern Washroom</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-btns">
+            <a href="index.html" class="back btn">← Back</a>
+            <a href="#" id="book-link" class="book btn">Book This Room</a>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const room = urlParams.get('room');
+
+        // ADD YOUR PHOTO FILENAMES HERE FOR EACH ROOM
+        const roomData = {
+            'deluxe': { 
+                title: 'Deluxe Room', 
+                images: ['m.jpeg', 'room1.jpeg', '22.jpeg', '33.jpeg',  '555555.jpeg', '66.jpeg', ], // Add more images here
+                desc: 'Experience the perfect blend of luxury and nature. Our Deluxe rooms feature large windows for sunset views.' 
+            },
+            'suite': { 
+                title: 'Suite Room', 
+                images: ['mm.jpeg', '8.jpeg', 'you.jpeg'], 
+                desc: 'The ultimate luxury experience in Shimla. Includes a private lounge and premium bedding.' 
+            },
+            'standard': { 
+                title: 'Standard Room', 
+                images: ['you.jpeg', 'mmmm.jpeg',], 
+                desc: 'Comfortable and affordable. Ideal for backpackers and short stays.' 
+            },
+            'family': { 
+                title: 'Family Room', 
+                images: ['family.jpeg', 'family1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', 'fm5.jpeg', '6.jpeg', 'fm8.jpeg', '9.jpeg'], 
+                desc: 'Space for everyone. Our family rooms feature multiple beds and extra seating.' 
+            },
+            'honeymoon': { 
+                title: 'Honeymoon Suite', 
+                images: ['5.jpeg', '55.jpeg','5555.jpeg'], 
+                desc: 'Celebrate your love with a romantic theme, flower decorations (on request), and the best views.' 
+            },
+            'executive': { 
+                title: 'Executive Room', 
+                images: ['room4.jpeg', '44.jpeg','4continue.jpeg','444.jpeg'], 
+                desc: 'Designed for the modern traveler. Quiet, functional, and elegant.' 
+            },
+            'luxury': { 
+                title: 'Luxury Suite', 
+                images: ['8.jpeg', 'l.jpeg', 'x.jpeg' ,'uu.jpeg','r.jpeg','yyyy.jpeg','luck.jpeg','lucky.jpeg','tata2.jpeg','tata3.jpeg'], 
+                desc: 'Our most premium suite with 4-star facilities and exclusive mountain-facing balcony.' 
+            }
+        };
+
+        if (room && roomData[room]) {
+            const data = roomData[room];
+            document.getElementById('room-title').innerText = data.title;
+            document.getElementById('room-desc').innerText = data.desc;
+            document.getElementById('book-link').href = 'booking.html?room=' + room;
+
+            // Load the images into the slider
+            const gallery = document.getElementById('gallery');
+            data.images.forEach(imgSrc => {
+                const imgTag = document.createElement('img');
+                imgTag.src = imgSrc;
+                gallery.appendChild(imgTag);
+            });
+        }
+    </script>
+</body>
+</html>

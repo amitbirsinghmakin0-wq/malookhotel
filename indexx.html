@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome | New Malook Hotel Shimla</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:
+            linear-gradient(rgba(10,15,25,0.7), rgba(10,15,25,0.8)),
+            url("hill.jpeg") no-repeat center center/cover;
+            font-family: 'Georgia', serif;
+            animation: zoomBg 20s infinite alternate;
+        }
+
+        /* Logo Top Left */
+        .logo {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            width: 110px;
+        }
+
+        .blur-box {
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            background: rgba(0, 0, 0, 0.55);
+            padding: 70px;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            width: 85%;
+            max-width: 650px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        h1 {
+            font-size: 50px;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        /* Elegant divider */
+        .divider {
+            width: 80px;
+            border: 1px solid rgba(255,255,255,0.4);
+            margin: 20px auto;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #cfd8dc; /* soft mist color */
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-text {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .enter-btn {
+            padding: 14px 40px;
+            font-size: 16px;
+            background: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .enter-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomBg {
+            from { background-size: 100%; }
+            to { background-size: 110%; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Logo -->
+    <img src="logo.jpeg" alt="Hotel Logo" class="logo">
+
+    <div class="blur-box">
+        <h1>New Malook Hotel</h1>
+
+        <hr class="divider">
+
+        <div class="tagline">
+            Serenity in the Heart of the Himalayas
+        </div>
+
+        <div class="welcome-text">
+            Wake up to crisp mountain air, peaceful valley views,
+            and the quiet whisper of the Himalayan hills.
+            Discover refined comfort inspired by nature.
+        </div>
+
+        <a href="home.html">
+            <button class="enter-btn">ENTER EXPERIENCE</button>
+        </a>
+    </div>
+
+</body>
+</html>
